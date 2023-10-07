@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
-use crate::{LSPObject, Url};
+use crate::{LSPObject, Uri};
 
 pub use notification_params::*;
 
@@ -12,7 +12,7 @@ pub use notification_params::*;
 #[serde(rename_all = "camelCase")]
 pub struct NotebookDocument {
     /// The notebook document's URI.
-    uri: Url,
+    uri: Uri,
     /// The type of the notebook.
     notebook_type: String,
     /// The version number of this document (it will increase after each
@@ -39,7 +39,7 @@ pub struct NotebookCell {
     /// The cell's kind
     kind: NotebookCellKind,
     /// The URI of the cell's text document content.
-    document: Url,
+    document: Uri,
     /// Additional metadata stored with the cell.
     #[serde(skip_serializing_if = "Option::is_none")]
     metadata: Option<LSPObject>,
@@ -322,7 +322,7 @@ mod notification_params {
         /// The version number of this notebook document.
         version: i32,
         /// The notebook document's URI.
-        uri: Url,
+        uri: Uri,
     }
 
     /// A change event for a notebook document.
@@ -413,7 +413,7 @@ mod notification_params {
     #[serde(rename_all = "camelCase")]
     pub struct NotebookDocumentIdentifier {
         /// The notebook document's URI.
-        uri: Url,
+        uri: Uri,
     }
 
     /// The params sent in a close notebook document notification.
